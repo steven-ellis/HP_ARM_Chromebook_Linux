@@ -28,14 +28,14 @@ fi
 if [ -z "$2" ]; then
   MINECRAFT_LWJGL_PATH=~/.minecraft/libraries/org/lwjgl/lwjgl/lwjgl-platform/2.9.1
 else
-  MINECRAFT_LWJGL_PATH=$2
+  MINECRAFT_LWJGL_PATH=~/.minecraft/libraries/org/lwjgl/lwjgl/lwjgl-platform/$2
 fi
 
-zip -j "$MINECRAFT_LWJGL_PATH/lwjgl-platform-2.9.1-natives-linux.jar" \
+zip -j "$MINECRAFT_LWJGL_PATH/lwjgl-platform-$2-natives-linux.jar" \
   "$MINECRAFT_NATIVE_PATH/liblwjgl.so" \
   "$MINECRAFT_NATIVE_PATH/libopenal.so"
 
-SHA1_SUM=$(sha1sum "$MINECRAFT_LWJGL_PATH/lwjgl-platform-2.9.1-natives-linux.jar" --tag | awk '{print $4}')
+SHA1_SUM=$(sha1sum "$MINECRAFT_LWJGL_PATH/lwjgl-platform-$2-natives-linux.jar" --tag | awk '{print $4}')
 
 echo "New sha1sum: $SHA1_SUM"
-echo $SHA1_SUM > "$MINECRAFT_LWJGL_PATH/lwjgl-platform-2.9.1-natives-linux.jar.sha"
+echo $SHA1_SUM > "$MINECRAFT_LWJGL_PATH/lwjgl-platform-$2-natives-linux.jar.sha"
