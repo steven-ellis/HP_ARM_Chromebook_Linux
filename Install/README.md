@@ -24,4 +24,10 @@ Also disable auto-mount of the key Chrome volumes to avoid potential data corrup
 ```
 
 ## Key Changes
-The build that HP supplies is missing parted which means the default supplied installed from Clifford's site doesn't work
+The build that HP supplies is missing parted and partprobe which means the default script
+from Clifford's site doesn't work on my Chromebook
+
+Pre-format your MicroSD Card with a GPT partition layout on another machine or using fdisk before running 
+```
+chrubuntu.sh xubuntu-desktop lts mmcblk1
+```

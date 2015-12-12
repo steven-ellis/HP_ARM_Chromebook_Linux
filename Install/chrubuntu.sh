@@ -33,13 +33,13 @@ if [ "$3" != "" ]; then
 
   ext_size="`blockdev --getsz ${target_disk}`"
   aroot_size=$((ext_size - 65600 - 33))
-  parted --script ${target_disk} "mktable gpt"
+  #parted --script ${target_disk} "mktable gpt"
   cgpt create ${target_disk} 
   cgpt add -i 6 -b 64 -s 32768 -S 1 -P 5 -l KERN-A -t "kernel" ${target_disk}
   cgpt add -i 7 -b 65600 -s $aroot_size -l ROOT-A -t "rootfs" ${target_disk}
   sync
   blockdev --rereadpt ${target_disk}
-  partprobe ${target_disk}
+  #partprobe ${target_disk}
   crossystem dev_boot_usb=1
 else
   target_disk="`rootdev -d -s`"
