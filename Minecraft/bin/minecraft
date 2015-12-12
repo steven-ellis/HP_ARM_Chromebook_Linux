@@ -1,0 +1,6 @@
+#/bin/bash
+
+
+#export LD_LIBRARY_PATH="/usr/lib/jni/:/home/user/NATIVE"
+#java -Xmx1024M -Xms512M -Djava.library.path=/usr/lib/jni/ -jar ~/bin/Minecraft.jar
+java -Xmx1024M -Xms512M -jar ~/bin/Minecraft.jar
