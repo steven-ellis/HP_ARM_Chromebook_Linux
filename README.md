@@ -24,3 +24,5 @@ Setup of native library support for Minecraft under ARM
   * https://support.google.com/chromebook/answer/1080595 
  * Chromium Site 
   * https://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices 
+
+Also see RESOURCES.md for other useful resources
