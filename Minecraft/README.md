@@ -12,28 +12,42 @@ For the most part you can follow the instructions at the link below
  * http://rogerallen.github.io/jetson/2014/07/31/minecraft-on-jetson-tk1/
 
 ## Steps
- * Install Oracle JVM
+ * Install Oracle JVM version 8 (note tested with 9)
 ```
-apt-get install oracle-java8-installer
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
 ```
  * Install required ARM Native Audio Library
 ```
 apt-get install libopenal-dev
+mkdir NATIVE
+cp /usr/lib/arm-linux-gnueabihf/libopenal.so NATIVE
 ```
- * Build LWJGL
-  * Ubuntu supplied ARM build still doesn't work for Minecraft
-   - Appears to be related to missing libpthread
-  * Follow Roger's instructions
+ * Build LWJGL follwoing Roger's instructions
+  * Ubuntu supplied ARM build still doesn't work for Minecraft - appears to be related to missing libpthread
+```
+mkdir git
+cd git
+sudo apt-get install git ant
+sudo apt-get install libxcursor-dev # X cursor management library (development files)
+sudo apt-get install libxxf86vm-dev # X11 XFree86 video mode extension library (development headers)
+sudo apt-get install libxrandr-dev  # X11 RandR extension library (development headers)
+sudo apt-get install libxt-dev      # X11 Toolkit Intrinsics library (development headers)
+
+git clone https://github.com/LWJGL/lwjgl.git
+```
+
  * Run Mincraft and quit on errors
 ```
-~/bin/minecraft
+ ~/bin/minecraft
 ```
- * Overlay our libraries into the downloaded Mincraft environment
+ * Overlay our libraries into the downloaded Mincraft environment, making sure we've specified the target correct version
 ```
-./copy_lwjgl.sh ../NATIVE 2.9.4-nightly-20150209
+ cd bin
+ ./copy_lwjgl.sh ../NATIVE 2.9.4-nightly-20150209
 
 ```
-  * NOTE - Update the second parameter above to match the current cached native library path
  * Test Mincraft now runs correctly
 ```
 ~/bin/minecraft
@@ -41,8 +55,8 @@ apt-get install libopenal-dev
 
 Key differences from Roger's instructions are
  * Oracle JVM 8.x rather than Oracle Java 7.x
-  * Standard OpenJDK for Arm32 doesn't have the performance - 
- * Existing Native Libraries for sound - libopenal.so 
+  * Standard OpenJDK for Arm32 doesn't have the performance for minecraft to be usable
+ * Existing Native Libraries for sound `libopenal.so`
  * Modified `copy_lwjgl.sh` so we can select the destination library version easier
 
 ## Links / References
