@@ -26,6 +26,7 @@ cp /usr/lib/arm-linux-gnueabihf/libopenal.so NATIVE
 ```
  * Build LWJGL follwoing Roger's instructions
   * Ubuntu supplied ARM build still doesn't work for Minecraft - appears to be related to missing libpthread
+
 ```
 mkdir git
 cd git
